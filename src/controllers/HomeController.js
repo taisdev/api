@@ -1,6 +1,13 @@
+import Perfil from '../models/perfil';
+
 class HomeController {
   async index(req, res) {
-    res.json('Index');
+    const NovoPerfil = await Perfil.create({
+      titulo: 'titulo',
+      descricao: 'descricao',
+      ativo: true,
+    });
+    res.json(NovoPerfil);
   }
 }
 

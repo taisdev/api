@@ -1,10 +1,15 @@
-import './database';
+import dotenv from 'dotenv';
 
+import './database';
 import express from 'express';
 // import cors from 'cors';
 // import helmet from 'helmet';
 
 import homeRoutes from './routes/homeRoutes';
+import perfilRoutes from './routes/perfilRoutes';
+import empresaRoutes from './routes/empresaRoutes';
+
+dotenv.config();
 /*
 
 const whiteList = [
@@ -38,6 +43,8 @@ class App {
 
   routes() {
     this.app.use('/', homeRoutes);
+    this.app.use('/perfil/', perfilRoutes);
+    this.app.use('/empresa/', empresaRoutes);
   }
 }
 
