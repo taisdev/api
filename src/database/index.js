@@ -1,9 +1,10 @@
 import Sequelize from 'sequelize';
 import databaseConfig from '../config/database';
-import Perfil from '../models/perfil';
+import Perfil from '../models/Perfil';
 import Empresa from '../models/Empresa';
+import Documento from '../models/Documento';
 
-const models = [Perfil, Empresa];
+const models = [Perfil, Empresa, Documento];
 
 const connection = new Sequelize(databaseConfig);
 

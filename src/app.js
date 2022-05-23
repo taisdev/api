@@ -8,6 +8,7 @@ import express from 'express';
 import homeRoutes from './routes/homeRoutes';
 import perfilRoutes from './routes/perfilRoutes';
 import empresaRoutes from './routes/empresaRoutes';
+import documentoRoutes from './routes/documentoRoutes';
 
 dotenv.config();
 /*
@@ -45,6 +46,7 @@ class App {
     this.app.use('/', homeRoutes);
     this.app.use('/perfil/', perfilRoutes);
     this.app.use('/empresa/', empresaRoutes);
+    this.app.use('/documento/', documentoRoutes);
   }
 }
 
