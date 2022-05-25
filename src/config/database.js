@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 module.exports = {
   username: 'taisd',
   password: '',
@@ -9,11 +7,11 @@ module.exports = {
   define: {
     timestamps: true,
     freezeTableName: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
+    createdAt: false,
+    updatedAt: false,
   },
+  timezone: '-03:00',
   dialectOptions: {
-    timezone: 'America/Sao_Paulo',
+    timezone: '-03:00',
   },
-  timezone: 'America/Sao_Paulo',
 };

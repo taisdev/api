@@ -1,56 +1,48 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('empresa', {
+    await queryInterface.createTable('Empresa', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
       },
-      nomeFantasia: {
-        type: Sequelize.STRING,
+      nome_fantasia: {
+        type: Sequelize.STRING(45),
         allowNull: false,
       },
-      razaoSozial: {
-        type: Sequelize.STRING,
+      razao_social: {
+        type: Sequelize.STRING(45),
         allowNull: false,
       },
       cnpj: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(14),
         allowNull: false,
       },
       endereco: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: true,
       },
       email: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(45),
         allowNull: false,
       },
       telefone: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(15),
         allowNull: true,
       },
       whatsapp: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(15),
         allowNull: true,
       },
       site: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(99),
         allowNull: true,
-      },
-      created_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      updated_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
       },
     });
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable('empresa');
+    await queryInterface.dropTable('Empresa');
   },
 };

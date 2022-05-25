@@ -9,6 +9,12 @@ export default class Perfil extends Model {
     }, {
       sequelize,
     });
+    Perfil.associate = (models) => {
+      this.hasOne(models.User, {
+        foreignKey: 'Empresa_idEmpresa',
+        as: 'User',
+      });
+    };
     return this;
   }
 }

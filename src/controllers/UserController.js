@@ -1,15 +1,17 @@
-import Perfil from '../models/Perfil';
+import User from '../models/User';
 
-class PerfilController {
+class UserController {
   async index(req, res) {
-    const perfil = await Perfil.findAll({});
-    res.json(perfil);
+    const user = await User.findAll({
+      include: ['Empresa', 'Perfil'],
+    });
+    res.json(user);
   }
 
   async create(req, res) {
     try {
-      const novoPerfil = await Perfil.create(req.body);
-      return res.json(novoPerfil);
+      const novoUser = await User.create(req.body);
+      return res.json(novoUser);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -27,15 +29,15 @@ class PerfilController {
         });
       }
 
-      const perfil = await Perfil.findByPk(id);
+      const user = await User.findByPk(id, { include: ['Perfil', 'Empresa'] });
 
-      if (!perfil) {
+      if (!user) {
         return res.status(400).json({
-          errors: ['Esse perfil não existe'],
+          errors: ['Esse user não existe'],
         });
       }
 
-      return res.json(perfil);
+      return res.json(user);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -53,15 +55,15 @@ class PerfilController {
         });
       }
 
-      const perfil = await Perfil.findByPk(id);
+      const user = await User.findByPk(id, { include: ['Perfil', 'Empresa'] });
 
-      if (!perfil) {
+      if (!user) {
         return res.status(400).json({
-          errors: ['Esse perfil não existe'],
+          errors: ['Esse user não existe'],
         });
       }
 
-      await perfil.destroy();
+      await user.destroy();
       return res.json({
         apagado: true,
       });
@@ -82,16 +84,16 @@ class PerfilController {
         });
       }
 
-      const perfil = await Perfil.findByPk(id);
+      const user = await User.findByPk(id, { include: ['Perfil', 'Empresa'] });
 
-      if (!perfil) {
+      if (!user) {
         return res.status(400).json({
-          errors: ['Esse perfil não existe'],
+          errors: ['Esse user não existe'],
         });
       }
 
-      const perfilAtualizado = await perfil.update(req.body);
-      return res.json(perfilAtualizado);
+      const userAtualizado = await user.update(req.body);
+      return res.json(userAtualizado);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -100,4 +102,4 @@ class PerfilController {
   }
 }
 
-export default new PerfilController();
+export default new UserController();

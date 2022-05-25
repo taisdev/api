@@ -1,15 +1,17 @@
-import Perfil from '../models/Perfil';
+import Log from '../models/Log';
 
-class PerfilController {
+class LogController {
   async index(req, res) {
-    const perfil = await Perfil.findAll({});
-    res.json(perfil);
+    const log = await Log.findAll({
+      include: ['User'],
+    });
+    res.json(log);
   }
 
   async create(req, res) {
     try {
-      const novoPerfil = await Perfil.create(req.body);
-      return res.json(novoPerfil);
+      const novoLog = await Log.create(req.body);
+      return res.json(novoLog);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -27,15 +29,15 @@ class PerfilController {
         });
       }
 
-      const perfil = await Perfil.findByPk(id);
+      const log = await Log.findByPk(id, { include: ['User'] });
 
-      if (!perfil) {
+      if (!log) {
         return res.status(400).json({
-          errors: ['Esse perfil não existe'],
+          errors: ['Esse log não existe'],
         });
       }
 
-      return res.json(perfil);
+      return res.json(log);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -53,15 +55,15 @@ class PerfilController {
         });
       }
 
-      const perfil = await Perfil.findByPk(id);
+      const log = await Log.findByPk(id, { include: ['User'] });
 
-      if (!perfil) {
+      if (!log) {
         return res.status(400).json({
-          errors: ['Esse perfil não existe'],
+          errors: ['Esse log não existe'],
         });
       }
 
-      await perfil.destroy();
+      await log.destroy();
       return res.json({
         apagado: true,
       });
@@ -82,16 +84,16 @@ class PerfilController {
         });
       }
 
-      const perfil = await Perfil.findByPk(id);
+      const log = await Log.findByPk(id, { include: ['User'] });
 
-      if (!perfil) {
+      if (!log) {
         return res.status(400).json({
-          errors: ['Esse perfil não existe'],
+          errors: ['Esse log não existe'],
         });
       }
 
-      const perfilAtualizado = await perfil.update(req.body);
-      return res.json(perfilAtualizado);
+      const logAtualizado = await log.update(req.body);
+      return res.json(logAtualizado);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -100,4 +102,4 @@ class PerfilController {
   }
 }
 
-export default new PerfilController();
+export default new LogController();

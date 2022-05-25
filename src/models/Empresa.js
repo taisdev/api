@@ -3,10 +3,10 @@ import Sequelize, { Model } from 'sequelize';
 export default class Empresa extends Model {
   static init(sequelize) {
     super.init({
-      nomeFantasia: Sequelize.STRING,
-      razaoSozial: Sequelize.STRING,
+      nome_fantasia: Sequelize.STRING,
+      razao_social: Sequelize.STRING,
       cnpj: Sequelize.STRING,
-      endereco: Sequelize.STRING,
+      endereco: Sequelize.TEXT,
       email: Sequelize.STRING,
       telefone: Sequelize.STRING,
       whatsapp: Sequelize.STRING,
@@ -14,6 +14,12 @@ export default class Empresa extends Model {
     }, {
       sequelize,
     });
+    Empresa.associate = (models) => {
+      this.hasMany(models.User, {
+        foreignKey: 'Empresa_idEmpresa',
+        as: 'User',
+      });
+    };
     return this;
   }
 }

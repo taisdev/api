@@ -9,7 +9,6 @@ class DocumentoController {
   async create(req, res) {
     try {
       const novoDocumento = await Documento.create(req.body);
-      console.log('Doc', novoDocumento);
       return res.json(novoDocumento);
     } catch (e) {
       return res.status(400).json({

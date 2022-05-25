@@ -1,15 +1,17 @@
-import Perfil from '../models/Perfil';
+import EmpresaDocumento from '../models/EmpresaDocumento';
 
-class PerfilController {
+class EmpresaDocumentoController {
   async index(req, res) {
-    const perfil = await Perfil.findAll({});
-    res.json(perfil);
+    const empresadocumento = await EmpresaDocumento.findAll({
+      include: ['Empresa', 'Documento'],
+    });
+    res.json(empresadocumento);
   }
 
   async create(req, res) {
     try {
-      const novoPerfil = await Perfil.create(req.body);
-      return res.json(novoPerfil);
+      const novoEmpresaDocumento = await EmpresaDocumento.create(req.body);
+      return res.json(novoEmpresaDocumento);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -27,15 +29,15 @@ class PerfilController {
         });
       }
 
-      const perfil = await Perfil.findByPk(id);
+      const empresadocumento = await EmpresaDocumento.findByPk(id, { include: ['Empresa', 'Documento'] });
 
-      if (!perfil) {
+      if (!empresadocumento) {
         return res.status(400).json({
-          errors: ['Esse perfil não existe'],
+          errors: ['Esse documento não existe'],
         });
       }
 
-      return res.json(perfil);
+      return res.json(empresadocumento);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -53,15 +55,15 @@ class PerfilController {
         });
       }
 
-      const perfil = await Perfil.findByPk(id);
+      const empresadocumento = await EmpresaDocumento.findByPk(id, { include: ['Empresa', 'Documento'] });
 
-      if (!perfil) {
+      if (!empresadocumento) {
         return res.status(400).json({
-          errors: ['Esse perfil não existe'],
+          errors: ['Esse documento não existe'],
         });
       }
 
-      await perfil.destroy();
+      await empresadocumento.destroy();
       return res.json({
         apagado: true,
       });
@@ -82,16 +84,16 @@ class PerfilController {
         });
       }
 
-      const perfil = await Perfil.findByPk(id);
+      const empresadocumento = await EmpresaDocumento.findByPk(id, { include: ['Empresa', 'Documento'] });
 
-      if (!perfil) {
+      if (!empresadocumento) {
         return res.status(400).json({
-          errors: ['Esse perfil não existe'],
+          errors: ['Esse documento não existe'],
         });
       }
 
-      const perfilAtualizado = await perfil.update(req.body);
-      return res.json(perfilAtualizado);
+      const empresadocumentoAtualizado = await empresadocumento.update(req.body);
+      return res.json(empresadocumentoAtualizado);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -100,4 +102,4 @@ class PerfilController {
   }
 }
 
-export default new PerfilController();
+export default new EmpresaDocumentoController();

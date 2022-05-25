@@ -1,6 +1,6 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('perfil', {
+    await queryInterface.createTable('Perfil', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -8,29 +8,21 @@ module.exports = {
         autoIncrement: true,
       },
       titulo: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(45),
         allowNull: false,
       },
       descricao: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(45),
         allowNull: true,
       },
       ativo: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      created_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      updated_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
     });
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable('perfil');
+    await queryInterface.dropTable('Perfil');
   },
 };
