@@ -51,7 +51,7 @@ class App {
     this.app.use('/empresa/', empresaRoutes);
     this.app.use('/empresa-documento/', empresaDocumentoRoutes);
     this.app.use('/documento/', documentoRoutes);
-    this.app.use('/user-documento/', userDocumentoRoutes);
+    this.app.use('/documento-user/', userDocumentoRoutes);
     this.app.use('/user/', userRoutes);
     this.app.use('/log/', logRoutes);
     this.app.use('/alerta/', alertaRoutes);

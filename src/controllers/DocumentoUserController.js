@@ -3,7 +3,7 @@ import DocumentoUser from '../models/DocumentoUser';
 class DocumentoUserController {
   async index(req, res) {
     const documentouser = await DocumentoUser.findAll({
-      include: ['User', 'Empresa_Documento'],
+      include: ['EmpresaDocumento', 'User'],
     });
     res.json(documentouser);
   }
@@ -29,7 +29,7 @@ class DocumentoUserController {
         });
       }
 
-      const documentouser = await DocumentoUser.findByPk(id, { include: ['User', 'Empresa_Documento'] });
+      const documentouser = await DocumentoUser.findByPk(id, { include: ['EmpresaDocumento', 'User'] });
 
       if (!documentouser) {
         return res.status(400).json({
@@ -55,7 +55,7 @@ class DocumentoUserController {
         });
       }
 
-      const documentouser = await DocumentoUser.findByPk(id, { include: ['User', 'Empresa_Documento'] });
+      const documentouser = await DocumentoUser.findByPk(id, { include: ['EmpresaDocumento', 'User'] });
 
       if (!documentouser) {
         return res.status(400).json({
@@ -84,7 +84,7 @@ class DocumentoUserController {
         });
       }
 
-      const documentouser = await DocumentoUser.findByPk(id, { include: ['User', 'Empresa_Documento'] });
+      const documentouser = await DocumentoUser.findByPk(id, { include: ['EmpresaDocumento', 'User'] });
 
       if (!documentouser) {
         return res.status(400).json({

@@ -1,6 +1,6 @@
 import Empresa from '../models/Empresa';
 
-class PerfilController {
+class EmpresaController {
   async index(req, res) {
     const empresa = await Empresa.findAll({});
     res.json(empresa);
@@ -31,7 +31,7 @@ class PerfilController {
 
       if (!empresa) {
         return res.status(400).json({
-          errors: ['Esse perfil não existe'],
+          errors: ['Esse documento não existe'],
         });
       }
 
@@ -100,4 +100,4 @@ class PerfilController {
   }
 }
 
-export default new PerfilController();
+export default new EmpresaController();

@@ -1,6 +1,6 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Documento_User', {
+    await queryInterface.createTable('DocumentoUser', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      doc_validado_date: {
+      doc_validadoDate: {
         type: Sequelize.DATE,
         allowNull: false,
       },
@@ -33,12 +33,12 @@ module.exports = {
           key: 'id',
         },
       },
-      Empresa_Documento_idEmpresa_Documento: {
+      Empresa_DocumentoIdEmpresaDocumento: {
         type: Sequelize.INTEGER,
         allowNull: false,
         foreignKey: true,
         references: {
-          model: 'Empresa_Documento',
+          model: 'EmpresaDocumento',
           key: 'id',
         },
       },
@@ -47,6 +47,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable('Documento_User');
+    await queryInterface.dropTable('DocumentoUser');
   },
 };
